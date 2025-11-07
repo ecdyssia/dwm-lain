@@ -1,0 +1,204 @@
+--- config.def.h
++++ config.def.h
+@@ -6,15 +6,13 @@ static const unsigned int snap      = 32;       /* snap pixel */
+ static const int showbar            = 1;        /* 0 means no bar */
+ static const int topbar             = 1;        /* 0 means bottom bar */
+ static const char *fonts[]          = { "monospace:size=10" };
+-static const char col_gray1[]       = "#222222";
+-static const char col_gray2[]       = "#444444";
+-static const char col_gray3[]       = "#bbbbbb";
+-static const char col_gray4[]       = "#eeeeee";
+-static const char col_cyan[]        = "#005577";
++#include "colors-dark.c"
+ static const char *colors[][3]      = {
+-	/*               fg         bg         border   */
+-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
++	/*               fg                 bg                 border */
++	[SchemeNorm] = { normal_foreground, normal_background, normal_border },
++	[SchemeSel]  = { active_foreground, active_background, active_border },
++	[SchemeDim]  = { dim_foreground,    dim_background,    normal_border },
++	[SchemeMode] = { normal_foreground, dim_background,    normal_border },
+ };
+ 
+ /* tagging */
+--- dwm.c
++++ dwm.c
+@@ -58,7 +58,7 @@
+ 
+ /* enums */
+ enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
+-enum { SchemeNorm, SchemeSel }; /* color schemes */
++enum { SchemeNorm, SchemeSel, SchemeDim, SchemeMode }; /* color schemes */
+ enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
+        NetWMFullscreen, NetWMSticky, NetActiveWindow, NetWMWindowType,
+        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
+@@ -764,12 +764,12 @@ drawbar(Monitor *m)
+ 		if(!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+ 			continue;
+ 		w = TEXTW(tags[i]);
+-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
++		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeDim]);
+ 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+ 		x += w;
+ 	}
+ 	w = TEXTW(m->ltsymbol);
+-	drw_setscheme(drw, scheme[SchemeNorm]);
++	drw_setscheme(drw, scheme[SchemeMode]);
+ 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+ 
+ 	if ((w = m->ww - tw - x) > bh) {
+--- /dev/null
++++ colors-dark.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#1f1f1f";
++static const char mode_background[]   = "#232323";
++static const char dim_background[]    = "#2f2f2f";
++static const char active_background[] = "#3d3d3d";
++
++static const char normal_foreground[] = "#dedede";
++static const char active_foreground[] = "#ffffff";
++static const char dim_foreground[]    = "#bbbbbb";
++
++static const char normal_border[]  = "#3f3f3f";
++static const char active_border[]  = "#ececec";
+--- /dev/null
++++ colors-dracula.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#282A36";
++static const char mode_background[]   = "#323545";
++static const char dim_background[]    = "#3C4055";
++static const char active_background[] = "#51546D";
++
++static const char normal_foreground[] = "#F6F6F0";
++static const char active_foreground[] = "#ffffff";
++static const char dim_foreground[]    = "#A2A9CB";
++
++static const char normal_border[]  = "#44475A";
++static const char active_border[]  = "#50FA7B";
+--- /dev/null
++++ colors-everforest.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#1e2326";
++static const char mode_background[]   = "#272e33";
++static const char dim_background[]    = "#2e383c";
++static const char active_background[] = "#374145";
++
++static const char normal_foreground[] = "#d3c6aa";
++static const char active_foreground[] = "#ffffff";
++static const char dim_foreground[]    = "#7a8478";
++
++static const char normal_border[]  = "#495156";
++static const char active_border[]  = "#a7c080";
+--- /dev/null
++++ colors-gruvbox.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#1d2021";
++static const char mode_background[]   = "#282828";
++static const char dim_background[]    = "#3a3634";
++static const char active_background[] = "#504945";
++
++static const char normal_foreground[] = "#d5c4a1";
++static const char active_foreground[] = "#fbf1c7";
++static const char dim_foreground[]    = "#7c6f64";
++
++static const char normal_border[]  = "#3c3836";
++static const char active_border[]  = "#ececec";
+--- /dev/null
++++ colors-latte.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#eff1f5";
++static const char mode_background[]   = "#e6e9ef";
++static const char dim_background[]    = "#dce0e8";
++static const char active_background[] = "#ccd0da";
++
++static const char normal_foreground[] = "#4c4f69";
++static const char active_foreground[] = "#2c2f49";
++static const char dim_foreground[]    = "#8c8fa1";
++
++static const char normal_border[]  = "#acb0be";
++static const char active_border[]  = "#40a02b";
+--- /dev/null
++++ colors-light.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#ffffff";
++static const char mode_background[]   = "#f6f6f6";
++static const char dim_background[]    = "#ededed";
++static const char active_background[] = "#e4e4e4";
++
++static const char normal_foreground[] = "#707070";
++static const char active_foreground[] = "#252525";
++static const char dim_foreground[]    = "#a9a9a9";
++
++static const char normal_border[]  = "#9f9f9d";
++static const char active_border[]  = "#62A0C4";
+--- /dev/null
++++ colors-mocha.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#11111b";
++static const char mode_background[]   = "#181825";
++static const char dim_background[]    = "#1e1e2e";
++static const char active_background[] = "#313244";
++
++static const char normal_foreground[] = "#9399b2";
++static const char active_foreground[] = "#cdd6f4";
++static const char dim_foreground[]    = "#6c7086";
++
++static const char normal_border[]  = "#313244";
++static const char active_border[]  = "#a6e3a1";
+--- /dev/null
++++ colors-nord.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#2e3440";
++static const char mode_background[]   = "#3b4252";
++static const char dim_background[]    = "#434c5e";
++static const char active_background[] = "#4c566a";
++
++static const char normal_foreground[] = "#d8dee9";
++static const char active_foreground[] = "#eceff4";
++static const char dim_foreground[]    = "#818997";
++
++static const char normal_border[]  = "#4c566a";
++static const char active_border[]  = "#eceff4";
+--- /dev/null
++++ colors-onedark.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#282c34";
++static const char mode_background[]   = "#333A45";
++static const char dim_background[]    = "#444D5E";
++static const char active_background[] = "#555F72";
++
++static const char normal_foreground[] = "#abb2bf";
++static const char active_foreground[] = "#ffffff";
++static const char dim_foreground[]    = "#95A0B1";
++
++static const char normal_border[]  = "#5C6372";
++static const char active_border[]  = "#98c379";
+--- /dev/null
++++ colors-rosepine.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#191724";
++static const char mode_background[]   = "#1f1d2e";
++static const char dim_background[]    = "#26233a";
++static const char active_background[] = "#403d52";
++
++static const char normal_foreground[] = "#908caa";
++static const char active_foreground[] = "#e0def4";
++static const char dim_foreground[]    = "#6e6a86";
++
++static const char normal_border[]  = "#403d52";
++static const char active_border[]  = "#eb6f92";
+--- /dev/null
++++ colors-tokyonight.c
+@@ -0,0 +1,11 @@
++static const char normal_background[] = "#1a1b26";
++static const char mode_background[]   = "#24283b";
++static const char dim_background[]    = "#414868";
++static const char active_background[] = "#565f89";
++
++static const char normal_foreground[] = "#a9b1d6";
++static const char active_foreground[] = "#c0caf5";
++static const char dim_foreground[]    = "#9aa5ce";
++
++static const char normal_border[]  = "#414868";
++static const char active_border[]  = "#b4f9f8";
