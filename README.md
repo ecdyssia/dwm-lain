@@ -4,7 +4,7 @@
 > Dependecies for suckless stuff: git wget curl make gcc curl base-devel libX11-devel libXft-devel libXinerama-devel harfbuzz-devel imlib2-devel
 
 > [!TIP]
-> Available fonts: IosevkaTerm & JetBrainsMono
+> Available fonts: Iosevka Nerd Font, IosevkaTerm Nerd Font & JetBrainsMono Nerd Font
 > 
 > Just run:
 >
