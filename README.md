@@ -12,7 +12,7 @@
 >
 > wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/IosevkaTerm.zip
 > 
-> && wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Iosevka.zip
+> && wget https://github.com/be5invis/Iosevka/releases/download/v33.3.3/PkgTTC-SGr-Iosevka-33.3.3.zip
 >
 > && wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
 >
