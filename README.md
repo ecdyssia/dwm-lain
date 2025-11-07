@@ -5,6 +5,7 @@
 
 > [!TIP]
 > Available fonts: IosevkaTerm & JetBrainsMono
+> 
 > Just run:
 >
 > wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/IosevkaTerm.zip
