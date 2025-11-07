@@ -1,5 +1,7 @@
 > ![Rice](https://raw.githubusercontent.com/ecdyssia/dwm-lain/refs/heads/master/screenshots/image.png "dwm-lain")
 
+> ![Rice](https://raw.githubusercontent.com/ecdyssia/dwm-lain/refs/heads/master/screenshots/2-image.png "dwm-lain-asciiquarium")
+
 > [!IMPORTANT]
 > Dependecies for suckless stuff: git wget curl make gcc curl base-devel libX11-devel libXft-devel libXinerama-devel harfbuzz-devel imlib2-devel
 
