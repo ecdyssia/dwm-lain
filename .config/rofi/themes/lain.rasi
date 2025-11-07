@@ -1,0 +1,20 @@
+* {
+    /* Fondos */
+    bg-col:       #1b262f; /* Fondo principal (DWM normal_background) */
+    bg-col-light: #222e3a; /* Fondo secundario (DWM mode_background) */
+    selected-col: #3c526a; /* Selección (DWM active_background) */
+    
+    /* Bordes */
+    border-col:   #304051; /* Borde (DWM dim_background) */
+
+    /* Texto y Acentos */
+    fg-col:       #dce4ec; /* Texto principal (DWM normal_foreground) */
+    grey:         #8a9baa; /* Texto atenuado (DWM dim_foreground) */
+    blue:         #7a94b0; /* Acento azul (DWM active_border) */
+    
+    /* Acento brillante */
+    fg-col2:      #7acbe0; /* Acento cian */
+
+    /* Estructural */
+    width: 600;
+}
